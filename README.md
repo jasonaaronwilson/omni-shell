@@ -13,19 +13,19 @@ The most basic thing a shell can do is launch commands:
    ls -1
 ```
 
-### Redirection
+## Redirection
 
 Probably the same syntax as bash. >, <, and >> to redirect a file handle.
 
-### Pipelines
+## Pipelines
 
 Naturally | is still used to create pipe-lines of commands.
 
-### Variable Substitution
+## Variable Substitution
 
 Variable substitution is the familar syntax ${var-name}. This will look up a lexical variable and possibly turn it into a string if it isn't one already. If a lexical variable isn't found with that name than we use the environment variables.
 
-### Variable Assignment
+## Variable Assignment
 
 Variable assignment is accomplished with set like fish.
 
@@ -34,4 +34,29 @@ Variable assignment is accomplished with set like fish.
    setenv name <expression>
 ```
 
+## Function Definitions
 
+```
+   function name (args...) {
+   }
+```
+
+## Lambda Expressions
+
+```
+   lambda (x) {
+   }
+```
+
+## Control Flow
+
+```
+   if (<expression>) {
+   } else {
+   }
+```
+
+```
+   while (<expression>) {
+   }
+```
