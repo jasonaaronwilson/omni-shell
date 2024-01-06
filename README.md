@@ -14,7 +14,7 @@ Strings begin and end with " or """ and are interpolated.
 
 ## Commands Context versus Expression Context
 
-Omni Shell starts out in command context where everything is either a command/function call or a statement. An open paren starts an expression context. In expression context, variables no longer need "$", OTOH strings must now be fully qouoted. In expression context, \ is no longer needed.
+Omni Shell starts out in command context where everything is either a command/function call or a statement. An open paren starts an expression context. In expression context, variables no longer need "$", OTOH strings must now be fully qouoted. In expression context, \ is no longer needed. Some statements or expressions have blocks inside of them (blocks begin with "{" and end with a matching "}"). Inside of a block, we reenter the command context where commands end at the end of the line unless \ is used.
 
 ## Simple Commands
 
@@ -28,7 +28,7 @@ The most basic thing a shell can do is launch external commands/programs:
 
 ## Function Calls
 
-Where ever a command is expected, if the command name matches a function name, a function call is done instead. There are a large number of built-in functions.
+Where ever a command is expected, if the command name matches a function name, a function call is done instead. There are a large number of built-in functions. Functions calls also happen in expression context.
 
 Unlike traditional languages, function calls can sometimes accept "flags" which begin with "-".
 
@@ -78,6 +78,17 @@ To return one or more a value, use a return statement:
 
 ```
    return x
+```
+
+To accept variable number of arguments, use a * at the end of the argument list and then use $* to access the arguments past the last named argument:
+
+```
+function append (a b *) {
+  if (== 0 (length $*)) {
+    return (cons a (cons b (make-list)))
+  }
+  return (append a (append b ,$*))
+}
 ```
 
 To accept flags, a function must declare and parse them.
