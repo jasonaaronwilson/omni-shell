@@ -1,6 +1,6 @@
 # Omni Shell
 
-Omni shell is my design for a command line shell that is easier to program than bash while retaining the simplicity of being suitable as a "command repl". It's meant to fill the ground between bash and languages like Ruby, Python, and Perl. Expression syntax is most similar to Scheme while command syntax is very much like bash and other shells.
+Omni shell is my design for a command line shell that is easier to program than bash while retaining the simplicity of being suitable as a "command repl". It's meant to fill the ground between bash and languages like Ruby, Python, and Perl. Expression syntax is most similar to Scheme (though with immutable values (except closures)) while command syntax is very much like bash and other shells.
 
 ## Syntax
 
@@ -11,6 +11,10 @@ The pound sign begins a comment that continues to the end of the document.
 Commands fit on one line unless continued with \ at the very end of the line.
 
 Strings begin and end with " or """ and are interpolated.
+
+## Commands Context versus Expression Context
+
+Omni Shell starts out in command context where everything is either a command/function call or a statement. An open paren starts an expression context. In expression context, variables no longer need "$", OTOH strings must now be fully qouoted. In expression context, \ is no longer needed.
 
 ## Simple Commands
 
