@@ -1,6 +1,6 @@
 # Omni Shell
 
-Omni shell is my design for a command line shell that is easier to program than bash while retaining a the simplicity of being suitable as a "command repl". It's meant to fill the ground between bash and languages like Ruby, Python, and Perl.
+Omni shell is my design for a command line shell that is easier to program than bash while retaining a the simplicity of being suitable as a "command repl". It's meant to fill the ground between bash and languages like Ruby, Python, and Perl. Expression syntax is most similar to Scheme while command syntax is very much like bash and other shells.
 
 ## Syntax
 
@@ -10,7 +10,7 @@ The pound sign begins a comment that continues to the end of the document.
 
 Commands fit on one line unless continued with \ at the very end of the line.
 
-Strings begin and end with " or """
+Strings begin and end with " or """ and are interpolated.
 
 ## Simple Commands
 
@@ -25,6 +25,8 @@ The most basic thing a shell can do is launch external commands/programs:
 ## Function Calls
 
 Where ever a command is expected, if the command name matches a function name, a function call is done instead. There are a large number of built-in functions.
+
+Unlike traditional languages, function calls can sometimes accept "flags" which begin with "-".
 
 ## Redirection
 
@@ -74,6 +76,26 @@ To return one or more a value, use a return statement:
    return x
 ```
 
+To accept flags, a function must declare and parse them.
+
+```
+   function split (*) {
+     string_value delimiter --default " "
+     set left-overs parse_flags($*)
+     set current ""
+     set result (list)
+     for-each left-overs lambda (str) {
+        for-each-character str lambda (code-point) {
+          if (contains? delimiter code-point) {
+             set result (cons current result)
+             set current ""
+          }
+        }
+     }
+     return (reverse result)
+   }
+```
+
 ## Lambda Expressions
 
 ```
@@ -114,11 +136,14 @@ There is no for statement since this can be emulated with while. There are ways 
 
 ## Strucutures
 
+Structures are immutable.
+
 ```
    structure color (red green blue)
-   set b (make-color 0 0 255)
+   set b (color 0 0 255)
    echo $b
    echo $b.blue
+   echo (xform-color b --red 128)
 ```
 
 ## Lists
@@ -128,5 +153,13 @@ There is no for statement since this can be emulated with while. There are ways 
    echo (list-ref l 0)
    set l (cons x l)
    # car, cdr
+```
+
+## Maps
+
+```
+   set m (make-map)
+   set m (put m "key" "value")
+   echo (get $m "key")
 ```
    
