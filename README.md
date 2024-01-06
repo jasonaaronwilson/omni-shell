@@ -2,6 +2,8 @@
 
 Omni shell is my design for a command line shell that is easier to program than bash while retaining the simplicity of being suitable as a "command repl". It's meant to fill the ground between bash and languages like Ruby, Python, and Perl. Expression syntax is most similar to Scheme (though with immutable values (except closures)) while command syntax is very much like bash and other shells.
 
+In command context, lists are automatically flattened as individual arguments (though one can still use the comma operator if desired) while in expression context one must use ",".
+
 ## Syntax
 
 Tokens are either delimited by white-space or certain delimiters.
@@ -95,7 +97,7 @@ To accept flags, a function must declare and parse them.
 
 ```
    function split (*) {
-     string_value delimiter --default " "
+     flag --name=delimiter --type=string --default=" "
      set left-overs parse_flags($*)
      set current ""
      set result (list)
@@ -109,6 +111,8 @@ To accept flags, a function must declare and parse them.
      }
      return (reverse result)
    }
+
+   split --delimiter=, "a,b,c,d,e,f,g"
 ```
 
 ## Lambda Expressions
