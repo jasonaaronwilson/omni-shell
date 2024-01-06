@@ -1,6 +1,6 @@
 # Omni Shell
 
-Omni shell is my design for a command line shell that is easier to program than bash while retaining a the simplicity of being suitable as a "command repl". It's meant to fill the ground between bash and languages like Ruby, Python, and Perl. Expression syntax is most similar to Scheme while command syntax is very much like bash and other shells.
+Omni shell is my design for a command line shell that is easier to program than bash while retaining the simplicity of being suitable as a "command repl". It's meant to fill the ground between bash and languages like Ruby, Python, and Perl. Expression syntax is most similar to Scheme while command syntax is very much like bash and other shells.
 
 ## Syntax
 
