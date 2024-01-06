@@ -10,6 +10,8 @@ The pound sign begins a comment that continues to the end of the document.
 
 Commands fit on one line unless continued with \ at the very end of the line.
 
+Strings begin and end with " or """
+
 ## Simple Commands
 
 The most basic thing a shell can do is launch external commands/programs:
@@ -19,6 +21,10 @@ The most basic thing a shell can do is launch external commands/programs:
    ls
    ls -1
 ```
+
+## Function Calls
+
+Where ever a command is expected, if the command name matches a function name, a function call is done instead. There are a large number of built-in functions.
 
 ## Redirection
 
@@ -113,7 +119,6 @@ There is no for statement since this can be emulated with while. There are ways 
    set b (make-color 0 0 255)
    echo $b
    echo $b.blue
-   echo
 ```
 
 ## Lists
