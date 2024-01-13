@@ -1,5 +1,16 @@
 # Omni Shell
 
+I want a shell that scales cleanly from a command as simple as "ls" to 10,000 lines
+or more of code.
+
+After doing some initial design work on Omni Shell, an unrelated project had me take
+a look at php and I beleive it is the scripting language I was looking for all these
+years. It doesn't really qualify as a shell since you can't just type "ls" but it
+should be able to handle my scripting needs and it's available on must major operating
+systems already.
+
+# On Hold For Now
+
 Omni shell is my design for a command line shell that is easier to program than bash while retaining the simplicity of being suitable as a "command repl". It's meant to fill the ground between bash and languages like Ruby, Python, and Perl. Expression syntax is most similar to Scheme (though with immutable values (except closures)) while command syntax is very much like bash and other shells.
 
 In command context, lists are automatically flattened as individual arguments (though one can still use the comma operator if desired) while in expression context one must use ",".
